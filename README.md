@@ -35,6 +35,9 @@
   <br/>
   
   ## Usage
+  **Follow this link for a video walkthrough:**
+  <br/>
+  
   To use the application, go to the command line and enter **"npm start"** to run the employee tracker tool. You'll then be prompted
   by a series of prompts and choices that you may select based on your needs. You may also choose to simply view Departments,
   Roles and Employees and exit the application without making changes to the database. You may exit the application at any time
