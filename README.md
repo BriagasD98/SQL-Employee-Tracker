@@ -13,6 +13,12 @@
   <br/>
   
   ## Installation
+  1) clone the repository by entering the following command in the command line: <br/> 
+  ```
+  git clone 
+  ```
+  3) 
+  4) 
   <br/>
   
   ## Usage
