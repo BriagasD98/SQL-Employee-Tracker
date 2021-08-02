@@ -1,8 +1,10 @@
+// Dependencies
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 require('console.table');
 // Establishes connection with database in seperate file
 const connection = require('./config/connection');
+const db = require('./config/connection');
 
 connection.connect(err => {
     if (err) throw err;
@@ -62,3 +64,13 @@ const promptUser = () => {
       };
     });
   };
+
+// Shows all Departments
+function showDepartments() {
+    const sql = `SELECT department.id AS id, department.name AS department FROM department`;
+    db.query(sql, (err, rows) => {
+        if (err) throw err;
+        console.table(rows);
+        promptUser();
+    }) 
+};
