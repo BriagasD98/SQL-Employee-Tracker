@@ -25,7 +25,7 @@ const promptUser = () => {
                   'Add a Role', 
                   'Add an Employee', 
                   'Update an Employee Role',
-                  'No Action']
+                  'Exit Employee Database']
       }
     ])
       .then((answers) => {
@@ -60,7 +60,7 @@ const promptUser = () => {
         }
   
         if (choices === 'Exit Employee Database') {
-          connection.end()
+          connection.end();
       };
     });
   };
@@ -194,11 +194,99 @@ function addRole() {
   
               db.query(sql, params, (err, result) => {
                 if (err) throw err;
-                console.log('Added' + answer.role + " to roles!"); 
+                console.log('Added ' + answer.addRole + " to roles!"); 
   
                 showRoles();
          });
        });
      });
    });
+  };
+
+// Add an Employee
+function addEmployee() {
+    inquirer.prompt([
+      {
+        type: 'input',
+        name: 'addFirst',
+        message: "What is the employee's first name?",
+        validate: addFirst => {
+          if (addFirst) {
+              return true;
+          } else {
+              console.log('Please enter a first name');
+              return false;
+          }
+        }
+      },
+      {
+        type: 'input',
+        name: 'addLast',
+        message: "What is the employee's last name?",
+        validate: addLast => {
+          if (addLast) {
+              return true;
+          } else {
+              console.log('Please enter a last name');
+              return false;
+          }
+        }
+      }
+    ])
+      .then(answer => {
+      const params = [answer.addFirst, answer.addLast]
+  
+      // grab existing roles from roles table
+      const roleSql = `SELECT role.id, role.title FROM role`;
+    
+      db.query(roleSql, (err, data) => {
+        if (err) throw err; 
+        
+        const roles = data.map(({ id, title }) => ({ name: title, value: id }));
+  
+        inquirer.prompt([
+              {
+                type: 'list',
+                name: 'role',
+                message: "What is the employee's role?",
+                choices: roles
+              }
+            ])
+              .then(roleChoice => {
+                const role = roleChoice.role;
+                params.push(role);
+  
+                const managerSql = `SELECT * FROM employee`;
+  
+                db.query(managerSql, (err, data) => {
+                  if (err) throw err;
+  
+                  const managers = data.map(({ id, first_name, last_name }) => ({ name: first_name + " "+ last_name, value: id }));
+  
+                  inquirer.prompt([
+                    {
+                      type: 'list',
+                      name: 'manager',
+                      message: "Who is the employee's manager?",
+                      choices: managers
+                    }
+                  ])
+                    .then(managerChoice => {
+                      const manager = managerChoice.manager;
+                      params.push(manager);
+  
+                      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
+                      VALUES (?, ?, ?, ?)`;
+  
+                      db.query(sql, params, (err, result) => {
+                      if (err) throw err;
+                      console.log(answer.addFirst + " has been added to Employees!")
+  
+                      showEmployees();
+                });
+              });
+            });
+          });
+       });
+    });
   };
