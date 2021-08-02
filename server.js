@@ -8,10 +8,22 @@ const db = require('./config/connection');
 
 connection.connect(err => {
     if (err) throw err;
+    welcomeMessage();
     promptUser();
   });
 
-// Questions Array; This will be prompted after successful connection
+// Welcome Message/Art
+function welcomeMessage() {
+    console.log('+-------------------------------------------+')
+    console.log('|$                                         $|')
+    console.log('|                 WELCOME                   |')
+    console.log('|                   TO                      |')
+    console.log('|           EMPLOYEE  TRACKER               |')
+    console.log('|$                                         $|')
+    console.log('+-------------------------------------------+')
+}
+
+// Questions Array; This will be prompted after successful connection and welcome message
 const promptUser = () => {
     inquirer.prompt ([
       {
