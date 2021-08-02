@@ -35,7 +35,7 @@
   <br/>
   
   ## Usage
-  **Follow this link for a video walkthrough:**
+  **Follow this link for a video walkthrough:** https://drive.google.com/file/d/1xBl5AOg5ijcTkqP6MnaPx5FdAbn31gF8/view
   <br/>
   
   To use the application, go to the command line and enter **"npm start"** to run the employee tracker tool. You'll then be prompted
