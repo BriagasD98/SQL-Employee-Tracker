@@ -40,7 +40,10 @@
   Roles and Employees and exit the application without making changes to the database. You may exit the application at any time
   by selecting **"EXIT Employee Database**.
   <br/>
-  
+  ![Screenshot (55)](https://user-images.githubusercontent.com/83102464/127918249-853227a4-3c64-436d-a327-8554a280f9ed.png)
+  ![Screenshot (56)](https://user-images.githubusercontent.com/83102464/127918275-72d6ea46-d618-4fe5-b153-d888df91fa07.png)
+  ![Screenshot (57)](https://user-images.githubusercontent.com/83102464/127918293-d764dec5-05fe-4649-ab21-d5c1920369f3.png)
+  <br/>
   ## License
   ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
   For License information, visit:
